@@ -1,0 +1,62 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.hoang'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.4.4'
+
+//  ==== SECURITY ====
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+//	==== HIBERNATE/JPA ====
+	implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.5.3.Final'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+
+
+//	==== JSON ====
+	implementation 'org.json:json:20171018'
+
+//	==== VALIDATOR ====
+	implementation 'com.networknt:json-schema-validator:1.0.51'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+//	==== SWAGGER ====
+    implementation group: 'io.swagger.core.v3', name: 'swagger-annotations', version: '2.1.10'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.5.9'
+    implementation 'org.springdoc:springdoc-openapi-core:1.1.49'
+
+//  ==== KEYCLOAK ====
+    implementation group: 'org.keycloak', name: 'keycloak-spring-boot-starter', version: '13.0.1'
+    implementation group: 'org.keycloak', name: 'keycloak-admin-client', version: '13.0.1'
+    implementation group: 'org.keycloak.bom', name: 'keycloak-adapter-bom', version: '13.0.1', ext: 'pom'
+
+//  ==== PHONE NUMBER VALIDATE ====
+    implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.12.18'
+
+}
+
+test {
+	useJUnitPlatform()
+}
